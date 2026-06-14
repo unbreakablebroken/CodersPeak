@@ -11,7 +11,7 @@ function Dashboard() {
       setLoading(true);
       try {
         // Fetches lessons based on the selected track (frontend, automation, etc.)
-        const { data } = await axios.get(`http://localhost:5000/api/lessons?track=${activeTrack}`);
+        const { data } = await axios.get(`https://coderspeak.onrender.com/api/lessons?track=${activeTrack}`);
         setLessons(data);
       } catch (error) {
         console.error("Error fetching lessons:", error);
