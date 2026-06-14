@@ -1,4 +1,4 @@
-import Lesson from '../models/lesson.js';
+import Lesson from '../models/Lesson.js';
 
 // @desc    Get all lessons (or filter by track)
 // @route   GET /api/lessons
