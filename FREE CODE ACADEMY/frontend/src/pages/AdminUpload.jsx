@@ -15,7 +15,7 @@ function AdminUpload() {
     e.preventDefault();
     try {
       setStatus('Uploading...');
-      await axios.post('http://localhost:5000/api/lessons', formData);
+     await axios.post('https://coderspeak.onrender.com/api/lessons', formData);
       setStatus('✅ Lesson uploaded successfully!');
       // Reset form but increment order number for the next lesson automatically
       setFormData({ title: '', track: formData.track, language: formData.language, content: '', order: formData.order + 1 });
