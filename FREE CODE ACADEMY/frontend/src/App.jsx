@@ -2,18 +2,29 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 import AdminUpload from './pages/AdminUpload';
-import Auth from './pages/Auth'; // Import your new gatekeeper
+import Auth from './pages/Auth';
+import Home from './pages/Home';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // The bouncer's switch
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogin, setShowLogin] = useState(false); // Toggle to show Login instead of Home
 
-  // If not logged in, force them to the Auth page
+  // 1. If NOT authenticated, show the public landing page or login
   if (!isAuthenticated) {
-    return <Auth setAuthenticated={setIsAuthenticated} />;
+    return (
+      <>
+        <Navbar setCurrentPage={setCurrentPage} />
+        {showLogin ? (
+          <Auth setAuthenticated={setIsAuthenticated} />
+        ) : (
+          <Home onGetStarted={() => setShowLogin(true)} />
+        )}
+      </>
+    );
   }
 
-  // If logged in, show the full site
+  // 2. If authenticated, show the logged-in dashboard experience
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar setCurrentPage={setCurrentPage} currentPage={currentPage} />
