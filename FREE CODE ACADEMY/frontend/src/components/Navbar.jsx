@@ -1,61 +1,26 @@
 import React from 'react';
 
 function Navbar({ setCurrentPage, currentPage }) {
+  
+  const toggleTheme = () => {
+    document.body.classList.toggle('theme-pro');
+  };
+
   return (
-    <nav style={navStyle}>
-      <div style={logoStyle} onClick={() => setCurrentPage('dashboard')}>
-        🚀 <span>CodeAcademy</span>
-      </div>
+    <nav style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#1e293b' }}>
+      <h2>CodeAcademy</h2>
       
-      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-        <button 
-          onClick={() => setCurrentPage('dashboard')} 
-          style={linkStyle(currentPage === 'dashboard')}
-        >
-          Learn Code
-        </button>
+      <div>
+        <button onClick={() => setCurrentPage('dashboard')} style={{ marginRight: '10px' }}>Dashboard</button>
+        <button onClick={() => setCurrentPage('admin')} style={{ marginRight: '10px' }}>Admin</button>
         
-        <button 
-          onClick={() => setCurrentPage('admin')} 
-          style={linkStyle(currentPage === 'admin')}
-        >
-          Admin Panel
+        {/* Here is your new Theme Toggle */}
+        <button onClick={toggleTheme} style={{ backgroundColor: 'var(--accent-color)' }}>
+          🎨 Switch Theme
         </button>
       </div>
     </nav>
   );
 }
-
-// Quick inline styles
-const navStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '15px 40px',
-  backgroundColor: '#1e293b',
-  borderBottom: '1px solid #334155'
-};
-
-const logoStyle = {
-  fontSize: '20px',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  color: '#fff',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px'
-};
-
-const linkStyle = (isActive) => ({
-  background: 'none',
-  border: 'none',
-  color: isActive ? '#3b82f6' : '#94a3b8',
-  fontSize: '16px',
-  fontWeight: isActive ? 'bold' : 'normal',
-  cursor: 'pointer',
-  padding: '8px 12px',
-  borderRadius: '4px',
-  backgroundColor: isActive ? '#0f172a' : 'transparent'
-});
 
 export default Navbar;
